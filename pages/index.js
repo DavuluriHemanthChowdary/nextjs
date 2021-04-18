@@ -2,7 +2,7 @@ import Link from "next/link"
 
 
 function index({users}) {
-  console.log(users)
+  
   return (
     <div>
       {users.map((user)=>(
@@ -15,14 +15,14 @@ function index({users}) {
 }
 
 
-export async function getStaticProps(){
+export async function getServerSideProps() {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
-  const users = await res.json()
-  return{
+  const users = await res.json();
+  return {
     props: {
-      users
+      users,
     },
-  }
+  };
 }
 
 export default index;
